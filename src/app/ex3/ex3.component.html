@@ -1,0 +1,47 @@
+<div class="row">
+	<div class="col-md-6 col-md-offset-3">
+		<form #formUsuario="ngForm" (ngSubmit)="ex2">
+			<div class="form-group">
+				<label class="control-label" for="nome">nome</label>
+				<input class="form-control" type="text" minlength="3" required ngModel #nome="ngModel" name="nome" id="nome">
+				<div class="alert alert-danger" *ngIf="nome.touched&&!nome.valid">
+					<div *ngIf="nome.errors.required">o nome é obrigatório</div>
+					<div *ngIf="nome.errors.minlength">o nome precisa ter no mínimo 3 caracteres</div>
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="control-label" for="email">e-mail</label>
+				<input required class="form-control" type="email" ngModel name="email" #email="ngModel" id="email">
+				<div class="alert alert-danger" *ngIf="email.touched&&!email.valid">o e-mail é obrigatório</div>
+			</div>
+			<div class="form-group">
+				<label class="control-label" for="senha">senha</label>
+				<input class="form-control" type="password" ngModel required minlength="6" #senha="ngModel" (change)="log(senha)" name="senha" id="senha">
+				<div class="alert alert-danger" *ngIf="senha.touched&&!senha.valid">
+					<div *ngIf="senha.errors.required">informe a senha</div>
+					<div *ngIf="senha.errors.minlength">a senha precisa ter no mínimo 6 caracteres</div>
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="control-label" for="cSenha">confirmar senha</label>
+				<input class="form-control" type="password" required ngModel #cSenha="ngModel" name="cSenha" id="cSenha">
+				<div class="alert alert-danger" *ngIf="cSenha.touched&&!cSenha.valid">confirme a senha</div>
+			</div>
+			<div class="form-group">
+				<label class="control-label" for="idade">idade</label>
+				<input class="form-control" type="number" name="idade" id="idade" ngModel #idade="ngModel">
+			</div>
+			<div class="form-group">
+				<label class="control-label" for="sexo">sexo</label>
+				<select class="form-control" name="sexo" id="sexo" ngModel #sexo="ngModel">
+					<option value="">escolha</option>
+					<option value="masculino">masculino</option>
+					<option value="feminino">feminino</option>
+				</select>
+			</div>
+			<button type="submit" class="btn btn-primary">salvar</button>
+		</form>
+	</div>
+</div>
+
+{{formUsuario.value|json}}
